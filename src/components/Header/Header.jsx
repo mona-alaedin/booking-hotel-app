@@ -58,11 +58,11 @@ function Header() {
           </div>
           {openDate && (
             <DateRange
+              onChange={(item) => setDate([item.selection])}
               className="date"
               ranges={date}
               minDate={new Date()}
-              moveRangeOnFirstSelection={true}
-              onChange={(item) => setDate([item.selection])}
+              // moveRangeOnFirstSelection={true}
             />
           )}
 

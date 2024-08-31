@@ -16,5 +16,5 @@ export default function useOutsideClick(ref, exeptionId, cb) {
     return () => {
       document.removeEventListener("mousedown", handleOutsideClock);
     };
-  }, [ref]);
+  }, [ref, cb]);
 }
