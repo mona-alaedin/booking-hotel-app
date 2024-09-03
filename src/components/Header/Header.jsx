@@ -40,7 +40,9 @@ function Header() {
       };
     });
   };
+
   const navigate = useNavigate();
+
   const handleSearch = () => {
     const encodedParams = createSearchParams({
       date: JSON.stringify(date),

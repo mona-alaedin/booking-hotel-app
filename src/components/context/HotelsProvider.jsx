@@ -6,13 +6,13 @@ const HotelContext = createContext();
 function HotelsProvider({ children }) {
   const [searchParams, setSearchParams] = useSearchParams();
   const destination = searchParams.get("destination");
-  const room = JSON.parse(searchParams.get("options")).room;
+  const room = JSON.parse(searchParams.get("options"))?.room;
   // const { adult, children, room } = JSON.parse(searchParams.get("options"));
   // const [date] = JSON.parse(searchParams.get("date"));
-
+  // console.log(destination, room);
   const { isLoading, data: hotels } = useFetche(
     `http://localhost:5000/hotels`,
-    `q=${destination || ""}&accommodates_gte=${room || 1}`
+    `q=${destination || " "}&accommodates_gte=${room || 1}`
   );
 
   return (
