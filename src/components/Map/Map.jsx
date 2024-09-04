@@ -12,7 +12,7 @@ import { useEffect } from "react";
 import useGeoLocation from "../Hooks/useGeoLocation";
 
 function Map({ markerLocations }) {
-  const [mapCenter, setMapCenter] = useState([50, 5]);
+  const [mapCenter, setMapCenter] = useState([35.7219, 51.3347]);
   const [searchParams, setSearchParams] = useSearchParams();
   const lat = searchParams.get("lat");
   const lng = searchParams.get("lng");
@@ -48,12 +48,11 @@ function Map({ markerLocations }) {
         />
         <DetectClick />
         <ChangeCenter position={mapCenter} />
-        {markerLocations.map((item) => (
+        {markerLocations.map((item) => {
           <Marker key={item.id} position={[item.latitude, item.longitude]}>
             <Popup>{item.host_location}</Popup>
-          </Marker>
-        ))}
-        ;
+          </Marker>;
+        })}
       </MapContainer>
     </div>
   );

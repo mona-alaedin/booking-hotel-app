@@ -362,6 +362,8 @@
 
 .btn--back {
   border: 1px solid var(--text-400);
+  margin-bottom: 2rem;
+  background-color: cadetblue;
 }
 
 .formControl .flag {
