@@ -235,6 +235,7 @@
 .searchList .searchItem {
   display: flex;
   gap: 1rem;
+  padding: 0.6rem;
 }
 
 .searchList .searchItem img {
