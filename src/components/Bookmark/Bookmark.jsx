@@ -14,7 +14,9 @@ function Bookmark() {
       <div className="bookmarkList">
         {bookmarks.map((item) => {
           return (
-            <Link to={`${item.id}?lat=${item.latitude}&lng=${item.longitude}`}>
+            <Link
+              key={item.id}
+              to={`${item.id}?lat=${item.latitude}&lng=${item.longitude}`}>
               <div
                 key={item.id}
                 className={`bookmarkItem ${
