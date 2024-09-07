@@ -14,7 +14,6 @@ function BookmarkListProvider({ children }) {
   useEffect(() => {
     async function fetchBookmarkList() {
       setIsLoading(true);
-
       try {
         const { data } = await axios.get(`${BASE_URL}/bookmarks`);
         setBookmarks(data);
@@ -53,6 +52,18 @@ function BookmarkListProvider({ children }) {
     }
   }
 
+  async function deleteBookmark(id) {
+    setIsLoading(true);
+    try {
+      await axios.delete(`${BASE_URL}/bookmarks/${id}`);
+      setBookmarks((prev) => prev.filter((item) => item.id !== id));
+    } catch (error) {
+      toast.error(error.message);
+    } finally {
+      setIsLoading(false);
+    }
+  }
+
   return (
     <BookmarkContext.Provider
       value={{
@@ -61,6 +72,7 @@ function BookmarkListProvider({ children }) {
         getBookmark,
         currentBookmark,
         createBookmark,
+        deleteBookmark,
       }}>
       {children}
     </BookmarkContext.Provider>

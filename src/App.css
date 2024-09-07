@@ -325,6 +325,11 @@
   height: 1.1rem;
 }
 
+/* .bookmarkItem strong {
+  margin-left: 1rem;
+  margin-right: 0.5rem;
+} */
+
 /* form */
 
 .form .formControl {
