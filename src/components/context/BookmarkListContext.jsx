@@ -42,6 +42,7 @@ function bookmarkReducer(state, action) {
     case "bookmarks/deleted":
       return {
         ...state,
+        isLoading: false,
         bookmarks: state.bookmarks.filter((item) => item.id !== action.payload),
         currentBookmark: null,
       };
@@ -97,7 +98,7 @@ function BookmarkListProvider({ children }) {
     dispatch({ type: "loading" });
     try {
       const { data } = await axios.post(`${BASE_URL}/bookmarks/`, newBookmark);
-      dispatch({ type: "bookmark/created", payload: data });
+      dispatch({ type: "bookmarks/created", payload: data });
     } catch (error) {
       toast.error(error.message);
       dispatch({
@@ -111,7 +112,7 @@ function BookmarkListProvider({ children }) {
     dispatch({ type: "loading" });
     try {
       await axios.delete(`${BASE_URL}/bookmarks/${id}`);
-      dispatch({ type: "bookmark/deleted", payload: id });
+      dispatch({ type: "bookmarks/deleted", payload: id });
     } catch (error) {
       toast.error(error.message);
       dispatch({

@@ -7,12 +7,13 @@ import {
   useMapEvent,
 } from "react-leaflet";
 import { useState } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import useGeoLocation from "../Hooks/useGeoLocation";
 import useUrlLocation from "../Hooks/useUrlLocation";
 
 function Map({ markerLocations }) {
+  // console.log(markerLocations);
   const [mapCenter, setMapCenter] = useState([35.7219, 51.3347]);
   const [lat, lng] = useUrlLocation();
   const {
@@ -47,10 +48,13 @@ function Map({ markerLocations }) {
         />
         <DetectClick />
         <ChangeCenter position={mapCenter} />
+
         {markerLocations.map((item) => {
-          <Marker key={item.id} position={[item.latitude, item.longitude]}>
-            <Popup>{item.host_location}</Popup>
-          </Marker>;
+          return (
+            <Marker key={item.id} position={[item.latitude, item.longitude]}>
+              <Popup>{item.host_location}</Popup>
+            </Marker>
+          );
         })}
       </MapContainer>
     </div>
