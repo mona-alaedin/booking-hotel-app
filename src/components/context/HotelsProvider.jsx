@@ -16,7 +16,7 @@ function HotelsProvider({ children }) {
 
   const { isLoading, data: hotels } = useFetche(
     BASE_URL,
-    `q=${destination || " "}&accommodates_gte=${room || 1}`
+    `q=${destination || " "}&bedrooms_gte=${room || 1}`
   );
   async function getHotel(id) {
     setIsLoadingCurrentHotel(true);

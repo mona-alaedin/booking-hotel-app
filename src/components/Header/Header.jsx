@@ -27,6 +27,7 @@ function Header() {
     searchParams.get("destination") || ""
   );
   const [openOptions, setOpenOptions] = useState(false);
+  // const [openDateRang, setOpenDateRang] = useState(false);
   const [options, setOptions] = useState({
     adult: 1,
     children: 0,
@@ -49,7 +50,8 @@ function Header() {
     });
   };
   const navigate = useNavigate();
-
+  const dateRangeRef = useRef();
+  useOutsideClick(dateRangeRef, "dateRange", () => setOpenDate(false));
   const handleSearch = () => {
     const encodedParams = createSearchParams({
       date: JSON.stringify(date),
@@ -87,15 +89,17 @@ function Header() {
               "MM/dd/yyyy"
             )}`}
           </div>
-          {openDate && (
-            <DateRange
-              onChange={(item) => setDate([item.selection])}
-              className="date"
-              ranges={date}
-              minDate={new Date()}
-              // moveRangeOnFirstSelection={true}
-            />
-          )}
+          <div ref={dateRangeRef}>
+            {openDate && (
+              <DateRange
+                onChange={(item) => setDate([item.selection])}
+                className="date dateRange"
+                ranges={date}
+                minDate={new Date()}
+                // moveRangeOnFirstSelection={true}
+              />
+            )}
+          </div>
 
           <span className="seperator"></span>
         </div>
