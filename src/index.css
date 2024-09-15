@@ -14,10 +14,13 @@
   --primary-100: #e0e7ff;
   --rose-500: #f43f5e;
 }
+
 body {
   min-height: 100vh;
   padding: 1rem;
+  background-color: #f8faff;
 }
+
 * {
   margin: 0;
   padding: 0;
@@ -42,4 +45,10 @@ a {
   color: inherit;
   text-decoration: none;
   cursor: pointer;
+}
+
+@media (min-width: 768px) {
+  body {
+    padding: 1rem 2rem;
+  }
 }

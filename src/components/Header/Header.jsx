@@ -6,6 +6,9 @@ import {
   HiPlus,
   HiSearch,
 } from "react-icons/hi";
+import { BsFillBookmarksFill } from "react-icons/bs";
+import { LuLogIn } from "react-icons/lu";
+import { FiLogOut } from "react-icons/fi";
 import { useRef, useState } from "react";
 import useOutsideClick from "../Hooks/useOutsideClick";
 import "react-date-range/dist/styles.css"; // main style file
@@ -66,61 +69,72 @@ function Header() {
 
   return (
     <div className="header">
-      <NavLink to="/bookmarks">Bookmarks</NavLink>
+      <NavLink to="/bookmarks">
+        <BsFillBookmarksFill className="bookmark" />
+      </NavLink>
       <div className="headerSearch">
-        <div className="headerSearchItem">
-          <MdLocationOn className="headerIcon locationIcon" />
-          <input
-            value={destination}
-            onChange={(e) => setDestination(e.target.value)}
-            type="text"
-            placeholder="where to go?"
-            className="headerSearchInput"
-            name="destination"
-            id="destination"
-          />
-          <span className="seperator"></span>
-        </div>
-        <div className="headerSearchItem">
-          <HiCalendar className="headerIcon dateIcon" />
-          <div onClick={() => setOpenDate(!openDate)} className="dateDropDown">
-            {`${format(date[0].startDate, "MM/dd/yyyy")} to ${format(
-              date[0].endDate,
-              "MM/dd/yyyy"
-            )}`}
+        <div className="inputContainer">
+          <div className="headerSearchItem input">
+            <MdLocationOn className="locationIcon" />
+            <input
+              value={destination}
+              onChange={(e) => setDestination(e.target.value)}
+              type="text"
+              placeholder="where to go?"
+              className="headerSearchInput"
+              name="destination"
+              id="destination"
+            />
           </div>
-          <div ref={dateRangeRef}>
-            {openDate && (
-              <DateRange
-                onChange={(item) => setDate([item.selection])}
-                className="date dateRange"
-                ranges={date}
-                minDate={new Date()}
-                // moveRangeOnFirstSelection={true}
+          <div className="headerSearchItem searchBtn">
+            <button className="headerSearchBtn" onClick={handleSearch}>
+              <HiSearch className="searchHeaderIcon" />
+            </button>
+          </div>
+        </div>
+
+        <div className="searchItemsContainer">
+          <div className="headerSearchItem dateContainer">
+            <HiCalendar className="dateIcon" />
+            <div
+              onClick={() => setOpenDate(!openDate)}
+              className="dateDropDown">
+              {`${format(date[0].startDate, "MM/dd/yyyy")} - ${format(
+                date[0].endDate,
+                "MM/dd/yyyy"
+              )}`}
+            </div>
+            <div ref={dateRangeRef}>
+              {openDate && (
+                <DateRange
+                  onChange={(item) => setDate([item.selection])}
+                  className="date dateRange"
+                  ranges={date}
+                  minDate={new Date()}
+                  // moveRangeOnFirstSelection={true}
+                />
+              )}
+            </div>
+          </div>
+          <div className="headerSearchItem">
+            <div
+              id="optionDropDown"
+              onClick={() => setOpenOptions(!openOptions)}>
+              <div className="detailOptions">
+                {options.adult} adult &bull; {options.children} children &bull;
+                {options.room} room
+              </div>
+
+              <button className="optionBtn">options</button>
+            </div>
+            {openOptions && (
+              <GuestOptionList
+                setOpenOptions={setOpenOptions}
+                handleOptions={handleOptions}
+                options={options}
               />
             )}
           </div>
-
-          <span className="seperator"></span>
-        </div>
-        <div className="headerSearchItem">
-          <div id="optionDropDown" onClick={() => setOpenOptions(!openOptions)}>
-            {options.adult} adult &bull; {options.children} children &bull;
-            {options.room} room
-          </div>
-          {openOptions && (
-            <GuestOptionList
-              setOpenOptions={setOpenOptions}
-              handleOptions={handleOptions}
-              options={options}
-            />
-          )}
-          <span className="seperator"></span>
-        </div>
-        <div className="headerSearchItem">
-          <button className="headerSearchBtn" onClick={handleSearch}>
-            <HiSearch className="headerIcon" />
-          </button>
         </div>
       </div>
       <User />
@@ -188,17 +202,18 @@ function User() {
     navigate("/");
   };
   return (
-    <div>
+    <div className="test">
       {isAuthenticated ? (
-        <div>
-          <span>{user.name}</span>
+        <div className="detailUser">
+          <div className="userName">{user.name}</div>
           <button onClick={handleLogOut}>
-            <HiLogout className="icon" />
-            logout
+            <FiLogOut className="logout" />
           </button>
         </div>
       ) : (
-        <NavLink to="/login">Login</NavLink>
+        <NavLink to="/login">
+          <LuLogIn className="login" />
+        </NavLink>
       )}
     </div>
   );

@@ -2,25 +2,35 @@
 
 .header {
   display: flex;
-  justify-content: center;
   align-items: center;
-  gap: 1rem;
+
+  /* background-color: cornflowerblue; */
+}
+
+
+
+.inputContainer {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 }
 
 .headerSearch {
   display: flex;
+  flex-direction: column;
   width: 100%;
-  max-width: 900px;
+  max-width: 1440px;
   justify-content: space-between;
   align-items: center;
-  gap: 1rem;
+  gap: 0.5rem;
   border: 1px solid #ebe9e9;
-  border-radius: 1.5rem;
-  padding: 1rem;
+  border-radius: 0.2rem;
+  padding: 0.5rem;
+  background-color: #ffffff;
 }
 
 .headerSearchInput {
-  padding: 0.7rem 0.5rem;
+  padding: 0.7rem 0.2rem;
   font-size: 1rem;
 }
 
@@ -30,38 +40,60 @@
   position: relative;
 }
 
-.headerSearchItem .seperator {
-  display: inline-block;
-  width: 1px;
-  height: 30px;
-  background-color: var(--text-400);
-  margin: 0 1rem;
+.input {
+  border: 1px solid #dcdcdc;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  margin-right: 0.3rem;
 }
+
 
 .textField {
   padding: 0.7rem 1rem;
   border-radius: 0.5rem;
 }
 
-.headerIcon {
-  width: 1.5rem;
-  height: 1.5rem;
+.searchItemsContainer {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.searchHeaderIcon {
+  width: 1.2rem;
+  height: 1.2rem;
   display: inline-block;
 }
 
 .locationIcon {
   color: var(--rose-500);
+  font-size: 1.7rem;
+}
+
+.detailOptions {
+  display: none;
+}
+
+.optionBtn {
+  letter-spacing: 1px;
+  font-size: 14px;
+  color: #ffffff;
+  background-color: #d563ff;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1.5rem;
+  display: inline-block;
 }
 
 .guestOptions {
   background-color: #fff;
   box-shadow: 0 0 10px #efefef;
   border-radius: 1rem;
-  padding: 1rem;
+  padding: 0.8rem;
   border: 1px solid var(--text-100);
   position: absolute;
   top: 2rem;
-  width: 220px;
+  right: 0;
+  width: 210px;
   z-index: 1000;
 }
 
@@ -85,7 +117,7 @@
   padding: 0.5rem;
   border-radius: 0.5rem;
   color: var(--text-600);
-  background-color: var(--text-100);
+  background-color: #ffceff;
 }
 
 .optionText {
@@ -102,18 +134,22 @@
 
 .date {
   position: absolute;
-  top: 50px;
-  left: -5rem;
+  top: 40px;
+  left: 0;
   z-index: 1002;
 }
 
 .dateIcon {
   color: var(--primary-700);
+  font-size: 1.7rem;
 }
 
 .dateDropDown {
-  margin-left: 0.5rem;
   font-size: 0.8rem;
+}
+
+.dateContainer {
+  gap: 0 0.5rem;
 }
 
 .headerSearchBtn {
@@ -123,8 +159,99 @@
   background-color: var(--primary-600);
   color: #fff;
   padding: 0.6rem;
-  border-radius: 1rem;
+  border-radius: 0.5rem;
 }
+
+.bookmark {
+  display: none;
+}
+
+.userName {
+  background-color: #f1d4ff;
+  padding: 0.5rem;
+  border-radius: 5px;
+  margin-bottom: 0.5rem;
+  display: none;
+}
+
+.logout {
+  display: none;
+}
+
+.login {
+  display: none;
+}
+
+.detailUser {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+
+/*! Responsive Header */
+@media (min-width:425px) {
+  .header {
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .bookmark {
+    display: block;
+    font-size: 2rem;
+    color: indigo;
+  }
+
+  .input {
+    flex: 1;
+    margin-right: 3rem;
+  }
+
+}
+
+@media (min-width: 648px) {
+
+  .userName {
+    display: block;
+  }
+
+  .logout {
+    color: #820045;
+    font-size: 2rem;
+    display: block;
+  }
+
+  .login {
+    color: indigo;
+    display: block;
+    font-size: 2rem;
+  }
+
+  .detailOptions {
+    display: block;
+    font-size: 1rem;
+  }
+
+  .optionBtn {
+    display: none;
+  }
+
+  .headerSearchBtn {
+    padding: 0.8rem;
+  }
+
+  .searchHeaderIcon {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  .dateDropDown {
+    font-size: 1rem;
+  }
+}
+
+
 
 /*  location list */
 .nearbyLocation {
@@ -396,10 +523,4 @@ a.active {
 
 .loginContainer h2 {
   margin-bottom: 1rem;
-}
-
-.icon.logout {
-  color: var(--rose-500);
-  width: 1.1rem;
-  height: 1.1rem;
 }
