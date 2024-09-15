@@ -8,7 +8,7 @@ function Hotels() {
   if (isLoading) <Loader />;
   return (
     <div className="searchList">
-      <h2>Search Results ({hotels.length})</h2>
+      <h2 style={{ color: "#470047" }}>Search Results ({hotels.length})</h2>
       {hotels.map((item) => {
         return (
           <Link

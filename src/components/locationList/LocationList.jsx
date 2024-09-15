@@ -6,12 +6,12 @@ function LocationList() {
   if (isLoading) <p>Loading...</p>;
   return (
     <div className="nearbyLocations">
-      <h2>Nearby Locations</h2>
+      <h2 className="locationListTitle">Nearby Locations</h2>
       <div className="locationList">
         {data.map((item) => {
           return (
             <div key={item.id} className="locationItem">
-              <img src={item.medium_url} alt={item.name} />
+              <img src={item.thumbnail_url} alt={item.name} />
               <div className="locationItemDesc">
                 <p className="location">{item.smart_location}</p>
                 <p className="name">{item.name}</p>

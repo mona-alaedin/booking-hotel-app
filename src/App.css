@@ -362,7 +362,7 @@
 .searchList .searchItem {
   display: flex;
   gap: 1rem;
-  padding: 0.6rem;
+  padding: 0.6rem 0;
 }
 
 .searchList .searchItem img {
@@ -397,16 +397,21 @@
 
 /* app layout */
 .appLayout {
-  margin-top: 1rem;
+  margin-top: 2.5rem;
   display: flex;
+  gap: 2rem 0;
+  flex-direction: column;
   justify-content: space-between;
   height: calc(100vh - 130px);
-  /* background-color: var(--text-100); */
   align-items: stretch;
 }
 
+.locationListTitle {
+  margin: 2rem 0;
+  color: #470047;
+}
+
 .sidebar {
-  width: 35%;
   overflow-y: scroll;
   padding-right: 1rem;
 }
@@ -416,9 +421,14 @@
   border-radius: 1rem;
 }
 
+/* ! responsive */
 @media screen and (min-width: 768px) {
   .sidebar {
     width: 50%;
+  }
+
+  .appLayout {
+    flex-direction: row;
   }
 }
 
